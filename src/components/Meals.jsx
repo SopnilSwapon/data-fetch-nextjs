@@ -1,12 +1,11 @@
 "use client"
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Margin } from '@mui/icons-material';
 
 const Meals = () => {
     const [searchText, setSearchText] = useState('rice');
@@ -21,7 +20,9 @@ const Meals = () => {
     const handleSetSearchText = (e) => {
         setSearchText(e.target.value)
     }
-    console.log(searchText)
+   useEffect(() => {
+    handleSearch();
+   }, [])
     return (
         <div>
             <div className='flex justify-center gap-3 mt-4'>
@@ -32,7 +33,7 @@ const Meals = () => {
                 }}
                     onChange={handleSetSearchText}
                     halfWidth name='search' id="outlined-secondary" variant="outlined" placeholder='search' />
-                <Button onClick={handleSearch} variant="outlined">Search</Button>
+                <Button onClick={handleSearch} variant="contained" color='primary'>Search</Button>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
@@ -56,8 +57,8 @@ const Meals = () => {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small">details</Button>
-                                            <Button size="small">Buy</Button>
+                                            <Button variant='contained'color='success' size="small">details</Button>
+                                            <Button variant='contained' size="small">Buy</Button>
                                         </CardActions>
                                     </Card>
                                 </div>)
