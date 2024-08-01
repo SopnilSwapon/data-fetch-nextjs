@@ -1,11 +1,12 @@
 "use client"
-import { Button, TextField } from '@mui/material';
+import { Avatar, Box, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
 
 const Meals = () => {
     const [searchText, setSearchText] = useState('rice');
@@ -20,9 +21,9 @@ const Meals = () => {
     const handleSetSearchText = (e) => {
         setSearchText(e.target.value)
     }
-   useEffect(() => {
-    handleSearch();
-   }, [])
+    useEffect(() => {
+        handleSearch();
+    }, [])
     return (
         <div>
             <div className='flex justify-center gap-3 mt-4'>
@@ -34,30 +35,35 @@ const Meals = () => {
                     onChange={handleSetSearchText}
                     halfWidth name='search' id="outlined-secondary" variant="outlined" placeholder='search' />
                 <Button onClick={handleSearch} variant="contained" color='primary'>Search</Button>
-            </div>
 
+            </div>
+            <Box sx={{ position: "fixed", right: 16, }}>
+                <Avatar sx={{ width: '100px', height: '100px', bgcolor: red[500] }}>Sopon</Avatar>
+            </Box>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     meals?.length ? <>
                         {
                             meals?.map(meal =>
                                 <div key={meal.idMeal}>
-                                    <Card sx={{ m: 2 }}>
-                                        <CardMedia
-                                            sx={{ height: 140 }}
-                                            image={meal.strMealThumb}
-                                            title="green iguana"
-                                        />
+                                    <Card sx={{ m: 2, height: 580 }}>
+                                        <Box sx={{ p: 2 }}>
+                                            <CardMedia
+                                                sx={{ height: 200, borderRadius: 1 }}
+                                                image={meal.strMealThumb}
+                                                title={`${meal.strMeal}`}
+                                            />
+                                        </Box>
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="div">
                                                 {meal.strMeal}
                                             </Typography>
-                                            <Typography variant="body2" color="text.secondary">
+                                            <Typography sx={{ fontSize: 16 }} variant="body2" color="text.secondary">
                                                 {meal.strInstructions.slice(0, 500)}
                                             </Typography>
                                         </CardContent>
-                                        <CardActions>
-                                            <Button variant='contained'color='success' size="small">details</Button>
+                                        <CardActions sx={{ justifyContent: 'end', }}>
+                                            <Button variant='contained' color='success' size="small">details</Button>
                                             <Button variant='contained' size="small">Buy</Button>
                                         </CardActions>
                                     </Card>
@@ -65,7 +71,7 @@ const Meals = () => {
                         }
                     </>
                         :
-                        <Typography className='col-span-3' variant='h2' align='center' sx={{mt: 5}}>Not Found</Typography>
+                        <Typography className='col-span-3' variant='h2' align='center' sx={{ mt: 5 }}>Not Found</Typography>
                 }
             </div>
         </div>
