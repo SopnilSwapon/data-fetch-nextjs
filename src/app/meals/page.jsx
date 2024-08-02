@@ -1,5 +1,4 @@
-import Meals from '@/components/Meals';
-import React from 'react';
+import Meals from "@/components/Meals";
 
 export const metadata = {
     title: 'Meals',

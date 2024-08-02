@@ -37,9 +37,6 @@ const Meals = () => {
                 <Button onClick={handleSearch} variant="contained" color='primary'>Search</Button>
 
             </div>
-            <Box sx={{ position: "fixed", right: 16, }}>
-                <Avatar sx={{ width: '100px', height: '100px', bgcolor: red[500] }}>Sopon</Avatar>
-            </Box>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     meals?.length ? <>
