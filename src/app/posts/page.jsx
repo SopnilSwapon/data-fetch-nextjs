@@ -9,11 +9,11 @@ export const metadata = {
   };
 
 const PostsPage = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=30');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_POST_URL}/posts?_limit=30`);
     const posts = await res.json();
-    if(posts){
-        redirect('/login')
-    }
+    // if(posts){
+    //     redirect('/login')
+    // }
 
     return (
         <>
